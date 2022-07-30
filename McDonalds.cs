@@ -125,7 +125,7 @@ namespace Final_Project
             }
             logger.LogInfo($"{mcDonaldsA.Name},{mcDonaldsA.State},{mcDonaldsA.Address},{mcDonaldsA.Phonenumber} and {mcDonaldsB.Name},{mcDonaldsB.State}, {mcDonaldsB.Address}, {mcDonaldsB.Phonenumber} are the farthest apart from eachother and are {Convert.ToUInt32(distance) * MetersToMiles} miles apart");
 
-
+           
 
 
 
