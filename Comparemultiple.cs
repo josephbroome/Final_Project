@@ -13,6 +13,7 @@ namespace Final_Project
         const string McDonaldsCSVPath = "McDonalds-US-AL.csv";
         const string WendysCSVPath = "Wendys-US-AL.csv";
         const string BurgerKingCSVPath = "BurgerKing-US-AL.csv";
+        const string TacoBellCSVPath = "TacoBell-US-AL.csv";
 
         public string Name { get; set; }
         public string State { get; set; }
@@ -196,6 +197,73 @@ namespace Final_Project
             }
             logger.LogInfo($"{mcDonalds.Name},{mcDonalds.State},{mcDonalds.Address},{mcDonalds.Phonenumber} and {burgerking.Name},{burgerking.State}, {burgerking.Address}, {burgerking.Phonenumber} are the farthest apart from eachother and are {Convert.ToUInt32(distance) * MetersToMiles} miles apart");
 
+
+
         }
+    
+       public void McdonaldsandTacoBell()
+        {
+
+            logger.LogInfo("Log initialized");
+
+
+
+            var lines = File.ReadAllLines(McDonaldsCSVPath);
+            var line = File.ReadLines(TacoBellCSVPath);
+
+            logger.LogInfo($"Lines: {lines[0]}");
+            logger.LogInfo($"Lines: {lines[0]}");
+
+
+            var mcdonaldsparser = new McDonalds();
+            var tacobellparser = new Tacobell();
+
+
+            var locations = lines.Select(mcdonaldsparser.Parse).ToArray();
+            var locations2 = line.Select(tacobellparser.Parse).ToArray();
+
+
+            ITrackable mcDonalds = null;
+            ITrackable tacoBell = null;
+            const double MetersToMiles = 0.000621371;
+
+            double distance = 0;
+            for (int i = 0; i < locations.Length - 1; i++)
+            {
+                var locationA = locations[i];
+                var coordinateA = new GeoCoordinates
+                {
+                    Latitude = locationA.Location.Latitude,
+                    Longitude = locationA.Location.Longitude,
+                };
+                for (int j = 0; j < locations2.Length - 1; j++)
+                {
+                    var locationB = locations2[j];
+                    var coordinateB = new GeoCoordinates();
+
+                    coordinateB.Latitude = locationB.Location.Latitude;
+                    coordinateB.Longitude = locationB.Location.Longitude;
+
+
+                    if (coordinateA.GetDistanceTo(coordinateB) > distance)
+                    {
+                        distance = coordinateA.GetDistanceTo(coordinateB);
+                        mcDonalds = locationA;
+                        tacoBell = locationB;
+                    }
+                }
+            }
+            logger.LogInfo($"{mcDonalds.Name},{mcDonalds.State},{mcDonalds.Address},{mcDonalds.Phonenumber} and {tacoBell.Name},{tacoBell.State}, {tacoBell.Address}, {tacoBell.Phonenumber} are the farthest apart from eachother and are {Convert.ToUInt32(distance) * MetersToMiles} miles apart");
+
+
+
+
+
+
+        }
+
+
+
+
     }
 }

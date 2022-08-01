@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update=".gitignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="BurgerKing-US-AL.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

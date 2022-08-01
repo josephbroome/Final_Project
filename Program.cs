@@ -11,9 +11,11 @@ var compare = new Comparemultiple();
 bool isnumber;
 do
 {
-    Console.WriteLine("Welcome to the fast food visualizer app");
-    Console.WriteLine("Please choose food resturant and i will tell you which two locations are the farthest away from each other");
-    Console.Write("1:For Tacobell \n 2:For BurgerKing \n 3:For McDonalds \n 4:For Wendys \n");
+    Console.WriteLine("Welcome to the fast food visualizer app.");
+    Console.WriteLine();
+    Console.WriteLine("Please choose a fast food resturant and I will tell you which two locations are the farthest away from each other.");
+    Console.WriteLine();
+    Console.Write("1:For Tacobell \n2:For BurgerKing \n3:For McDonalds \n4:For Wendys \n");
 
     var userchoice = Console.ReadLine();
 
@@ -22,23 +24,46 @@ do
 
     if (result == 1)
     {
+        Console.WriteLine();
+        Console.WriteLine("***********************************************");
 
         tacobell.FindFarthestAppart();
+        
+        Console.WriteLine();
+        Console.WriteLine("***********************************************");
     }
     else if (result == 2)
     {
+        Console.WriteLine();
+        Console.WriteLine("***********************************************");
 
         burgerking.FindFarthestAppart();
+
+        Console.WriteLine();
+        Console.WriteLine("***********************************************");
 
     }
     else if (result == 3)
     {
+        Console.WriteLine();
+        Console.WriteLine("***********************************************");
 
         mcdonalds.FindFarthestAppart();
+
+        Console.WriteLine();
+        Console.WriteLine("***********************************************");
+    
     }
     else if (result == 4)
     {
+        Console.WriteLine();
+        Console.WriteLine("***********************************************");
+
         wendys.FindFarthestAppart();
+
+        Console.WriteLine();
+        Console.WriteLine("***********************************************");
+    
     }
 
 
@@ -65,20 +90,33 @@ if (userinput.ToLower() == "yes")
 {
     do
     {
-        Console.WriteLine("What two fastfood restaurants would you like to comapre");
+        Console.WriteLine("What two fastfood restaurants would you like to comapre?");
         var firstchoice = Console.ReadLine();
         var secondchoice = Console.ReadLine();
         if (firstchoice.ToLower() == "wendys" || firstchoice.ToLower() == "mcdonalds" && secondchoice.ToLower() == "mcdonalds" || secondchoice.ToLower() == "wendys")
         {
+            Console.WriteLine();
+            Console.WriteLine("***********************************************");
             compare.McdonaldsandWendys();
             break;
         }
         if (firstchoice.ToLower() == "mcdonalds" || firstchoice.ToLower() == "burgerking" && secondchoice.ToLower() == "mcdonalds" || secondchoice.ToLower() == "burgerking")
         {
+            Console.WriteLine();
+            Console.WriteLine("***********************************************");
             compare.McdonaldsandBugerKing();
             break;
         }
-    } while (true);
+        if (firstchoice.ToLower() == "mcdonalds" || firstchoice.ToLower() == "tacobell" && secondchoice.ToLower() == "mcdonalds" || secondchoice.ToLower() == "tacobell") ;
+        {
+            Console.WriteLine();
+            Console.WriteLine("***********************************************");
+
+            compare.McdonaldsandTacoBell();
+            break;
+
+        }
+    } while (false);
 }
 
 
